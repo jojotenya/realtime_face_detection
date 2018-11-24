@@ -61,4 +61,3 @@ def livestream(request):
         return StreamingHttpResponse(gen(VideoCamera(),cam), content_type="multipart/x-mixed-replace;boundary=frame")
     except:
         print('Unable to load camera.')
-        sleep(3)
