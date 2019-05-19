@@ -30,7 +30,7 @@ class VideoCamera(object):
         while True:
             (_, self.frame) = self.video.read()
 
-def gen(camera_obj,cam):
+def gen(cam):
     while True:
         frame = cam.get_frame()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -58,6 +58,6 @@ def gen(camera_obj,cam):
 def livestream(request):
     cam = VideoCamera()
     try:
-        return StreamingHttpResponse(gen(VideoCamera(),cam), content_type="multipart/x-mixed-replace;boundary=frame")
+        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
     except:
         print('Unable to load camera.')
